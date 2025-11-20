@@ -52,6 +52,16 @@
     <footer class="footer">
         &copy; 2025 Your Website.All Rights Reserved.
     </footer>
+<h1>Register successful✅✅</h1>
+<p>You will be redirected to the Home Page in 3 seconds...</p>
+
+<script>
+    // Use setTimeout to delay the redirect
+    setTimeout(function() {
+        // Change 'home.html' to your actual home page path
+        window.location.href = 'home.html'; 
+    }, 3000); // 3000 milliseconds = 3 seconds
+</script>
 
 </body>
 </html>
