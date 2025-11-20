@@ -1,132 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Registration</title>
-    <style>
-        /*
-         * CSS Styles (No change needed here as styles are language-agnostic)
-         */
-        body { 
-            font-family: Arial, sans-serif; 
-            display: flex; 
-            flex-direction: column;
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; 
-            background-color: #f4f4f4; 
-            margin: 0;
-        }
-        .container { 
-            background: white; 
-            padding: 30px; 
-            border-radius: 10px; 
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
-            width: 100%;
-            max-width: 400px;
-        }
-        h2 { 
-            text-align: center; 
-            color: #333; 
-            margin-bottom: 25px;
-        }
-        label { 
-            display: block; 
-            margin-bottom: 5px; 
-            font-weight: bold; 
-            color: #555;
-        }
-        input[type="text"], input[type="password"] { 
-            width: 100%; 
-            padding: 12px; 
-            margin-bottom: 20px; 
-            border: 1px solid #ccc; 
-            border-radius: 6px; 
-            box-sizing: border-box; 
-            transition: border-color 0.3s;
-        }
-        input[type="text"]:focus, input[type="password"]:focus {
-            border-color: #007bff;
-            outline: none;
-        }
-        button { 
-            background-color: #28a745; /* Green color for success/register */
-            color: white; 
-            padding: 14px 20px; 
-            border: none; 
-            border-radius: 6px; 
-            cursor: pointer; 
-            width: 100%; 
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #218838;
-        }
-        .message-box {
-            display: none; /* Initially hide the message box */
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            font-weight: bold;
-            text-align: center;
-            font-size: 1.1em;
-            width: 100%;
-            max-width: 400px;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration | BetaCloudX</title>
+    <style>
+        /*
+         * Registration Form CSS Styles
+         */
+        body { 
+            font-family: Arial, sans-serif; 
+            display: flex; 
+            flex-direction: column;
+            /* justify-content: center; Remove to allow navbar to stick to top */
+            align-items: center; 
+            min-height: 100vh; 
+            background-color: #f4f4f4; 
+            margin: 0;
+        }
+        .container { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px; /* Space below the navbar */
+        }
+        h2 { 
+            text-align: center; 
+            color: #333; 
+            margin-bottom: 25px;
+        }
+        label { 
+            display: block; 
+            margin-bottom: 5px; 
+            font-weight: bold; 
+            color: #555;
+        }
+        input[type="text"], input[type="password"] { 
+            width: 100%; 
+            padding: 12px; 
+            margin-bottom: 20px; 
+            border: 1px solid #ccc; 
+            border-radius: 6px; 
+            box-sizing: border-box; 
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        button { 
+            background-color: #28a745; 
+            color: white; 
+            padding: 14px 20px; 
+            border: none; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            width: 100%; 
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .message-box {
+            display: none; 
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.1em;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /*
+         * Styles for Navigation Bar
+         */
+        .navbar {
+            background-color: #333; /* Dark background */
+            color: white;
+            width: 100%;
+            padding: 15px 50px; /* Padding for top/bottom and sides */
+            display: flex;
+            justify-content: space-between; /* Space logo and links */
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box; /* Include padding in width */
+            margin-bottom: 20px; /* Space between navbar and form */
+        }
+
+        .logo a {
+            color: #28a745; /* Green logo text */
+            font-size: 1.5em;
+            font-weight: bold;
+            text-decoration: none; /* Remove underline */
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0 15px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ccc; /* Light gray on hover */
+        }
+    </style>
 </head>
 <body>
 
-    <div id="statusMessage" class="message-box">
-        Register successful✅✅
-    </div>
+    <nav class="navbar">
+        <div class="logo"><a href="index.html">BetaCloudX</a></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="topup.html">TopUp</a>
+            <a href="policy.html">Membership Policy</a>
+            <a href="password_policy.html">Password Policy</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </nav>
 
-    <div class="container" id="registrationForm">
-        <h2>New Registration (Register)</h2> 
-        
-        <form onsubmit="handleRegistration(event)">
-            <label for="username">User Name:</label>
-            <input type="text" id="username" name="username" required>
-            
-            <label for="email">Email:</label>
-            <input type="text" id="email" name="email" required>
-            
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            
-            <button type="submit">Register Now</button>
-        </form>
-    </div>
+    <div id="statusMessage" class="message-box">
+        Register successful✅✅
+    </div>
 
-    <script>
-        function handleRegistration(event) {
-            // 1. Prevent the form's default submission behavior
-            event.preventDefault(); 
+    <div class="container" id="registrationForm">
+        <h2>New Registration (Register)</h2> 
+        
+        <form onsubmit="handleRegistration(event)">
+            <label for="username">User Name:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit">Register Now</button>
+        </form>
+    </div>
 
-            // 2. Hide the Registration Form
-            const formContainer = document.getElementById('registrationForm');
-            formContainer.style.display = 'none';
+    <script>
+        function handleRegistration(event) {
+            // 1. Prevent the form's default submission behavior
+            event.preventDefault(); 
 
-            // 3. Show the Success Message
-            const messageBox = document.getElementById('statusMessage');
-            messageBox.style.display = 'block';
+            // 2. Hide the Registration Form
+            const formContainer = document.getElementById('registrationForm');
+            formContainer.style.display = 'none';
 
-            // 4. Auto Redirect to the Home page after 3 seconds
-            const delayInMilliseconds = 3000; // 3000ms = 3 seconds
-            
-            setTimeout(() => {
-                // Change 'home.html' to your actual Home Page URL
-                window.location.href = 'home.html'; 
-            }, delayInMilliseconds);
-            
-            // Note: In a real application, this is where you would make an
-            // AJAX/Fetch API call to a server-side script for actual registration.
-        }
-    </script>
+            // 3. Show the Success Message
+            const messageBox = document.getElementById('statusMessage');
+            messageBox.style.display = 'block';
+
+            // 4. Auto Redirect to the Home page after 3 seconds
+            const delayInMilliseconds = 3000; // 3000ms = 3 seconds
+            
+            setTimeout(() => {
+                // Change 'home.html' to your actual Home Page URL
+                window.location.href = 'home.html'; 
+            }, delayInMilliseconds);
+            
+            // Note: In a real application, this is where you would make an
+            // AJAX/Fetch API call to a server-side script for actual registration.
+        }
+    </script>
 </body>
 </html>
