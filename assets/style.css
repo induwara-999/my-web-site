@@ -106,7 +106,7 @@ body {
 }
 
 /* --- Complex Attractive Animation (Moving Background Gradient) --- */
-/* මෙය නිල්, කොළ, රෝස වැනි වර්ණ භාවිතයෙන් පාවෙන පසුබිමක් නිර්මාණය කරයි. */
+/* මෙය බහු වර්ණ භාවිතයෙන් පාවෙන පසුබිමක් නිර්මාණය කරයි. */
 .home-hero {
     overflow: hidden;
     position: relative;
@@ -125,26 +125,42 @@ body {
     height: 200%;
     background: linear-gradient(
         45deg,
-        #007bff, /* නිල් */
-        #28a745, /* කොළ */
-        #ff69b4, /* රෝස */
-        #007bff
+        #007bff,   /* 1. නිල් (Blue) */
+        #ff69b4,   /* 2. රෝස (Pink) */
+        #28a745,   /* 3. කොළ (Green) */
+        #ffc107,   /* 4. කහ (Yellow) */
+        #fd7e14,   /* 5. තැඹිලි (Orange) */
+        #6f42c1,   /* 6. දම් (Purple) */
+        #007bff    /* නැවතත් නිල්, චක්‍රය සම්පූර්ණ කිරීමට */
     );
-    background-size: 400% 400%;
+    background-size: 400% 400%; /* වර්ණ වැඩි බැවින් විශාලත්වය වැඩි කළා */
     z-index: -1;
-    animation: gradientShift 15s ease infinite;
+    animation: vibrant-gradient-move 100s ease infinite; /* කාලය 100s දක්වා වැඩි කළා */
 }
 
-@keyframes gradientShift {
+/* --- නව සජීවීකරණයේ ප්‍රධාන කොටස (වඩාත් විචිත්‍රවත් චලනය) --- */
+@keyframes vibrant-gradient-move {
     0% {
         background-position: 0% 50%;
     }
+    25% {
+        background-position: 100% 0%;
+    }
     50% {
+        background-position: 0% 100%;
+    }
+    75% {
         background-position: 100% 50%;
     }
     100% {
         background-position: 0% 50%;
     }
+}
+
+/* අන්තර්ගතය ඉස්මතු කිරීමට */
+.home-hero > * {
+    position: relative;
+    z-index: 2;
 }
 
 .home-hero h1 {
